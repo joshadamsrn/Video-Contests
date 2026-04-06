@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video Player</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      margin: 0;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    video {
+      width: 100%;
+      max-height: 520px;
+      background: #000;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .playlist {
+      text-align: left;
+      margin-top: 20px;
+      background: #1b1b1b;
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .track {
+      padding: 12px;
+      border-bottom: 1px solid #333;
+      cursor: pointer;
+    }
+
+    .track:last-child {
+      border-bottom: none;
+    }
+
+    .track:hover {
+      background: #2a2a2a;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .now-playing {
+      margin: 12px 0 20px;
+      font-size: 18px;
+      color: #ccc;
+    }
+
+    .note {
+      margin-top: 20px;
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    code {
+      background: #222;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Watch Videos</h1>
+
+    <video id="videoPlayer" controls>
+      <source id="videoSource" src="videos/video1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="now-playing" id="nowPlaying">Now Playing: Video 1</div>
+
+    <div class="playlist">
+      <div class="track" onclick="playVideo('videos/video1.mp4', 'Video 1')">Video 1</div>
+      <div class="track" onclick="playVideo('videos/video2.mp4', 'Video 2')">Video 2</div>
+      <div class="track" onclick="playVideo('videos/video3.mp4', 'Video 3')">Video 3</div>
+    </div>
+
+    <div class="note">
+      Replace the files in the <code>videos</code> folder with your own MP4 files,
+      then update the filenames and titles in <code>index.html</code>.
+    </div>
+  </div>
+
+  <script>
+    function playVideo(file, title) {
+      const player = document.getElementById('videoPlayer');
+      const source = document.getElementById('videoSource');
+      const nowPlaying = document.getElementById('nowPlaying');
+
+      source.src = file;
+      player.load();
+      player.play();
+      nowPlaying.textContent = 'Now Playing: ' + title;
+    }
+  </script>
+</body>
+</html>
