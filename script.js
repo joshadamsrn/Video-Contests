@@ -6,7 +6,7 @@ const videos = [
   },
   {
     title: "Street Ball",
-    src: "https://www.youtube.com/embed/lOYMS33FhM8",
+    src: "https://www.youtube.com/embed/ffF2FIdvL1M",
     cover: "images/sillyface.png"
   },
   {
@@ -46,6 +46,7 @@ function loadPlaylist() {
 
 function playVideo(index) {
   const video = videos[index];
+
   player.src = `${video.src}?rel=0&modestbranding=1`;
   nowPlaying.textContent = `Now Playing: ${video.title}`;
 
