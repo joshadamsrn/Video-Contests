@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Video Player</title>
+  <title>Video Contests</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -19,12 +19,23 @@
       margin: 0 auto;
     }
 
-    video {
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .video-frame {
       width: 100%;
-      max-height: 520px;
+      height: 520px;
       background: #000;
+      border: none;
       border-radius: 12px;
       margin-bottom: 20px;
+    }
+
+    .now-playing {
+      margin: 12px 0 20px;
+      font-size: 18px;
+      color: #ccc;
     }
 
     .playlist {
@@ -39,6 +50,9 @@
       padding: 12px;
       border-bottom: 1px solid #333;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
     .track:last-child {
@@ -49,63 +63,60 @@
       background: #2a2a2a;
     }
 
-    h1 {
-      margin-bottom: 20px;
+    .cover-thumb {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      object-fit: cover;
+      flex-shrink: 0;
     }
 
-    .now-playing {
-      margin: 12px 0 20px;
-      font-size: 18px;
-      color: #ccc;
+    .video-meta {
+      text-align: left;
     }
 
-    .note {
-      margin-top: 20px;
-      color: #aaa;
-      font-size: 14px;
+    .video-title {
+      font-size: 16px;
     }
 
-    code {
-      background: #222;
-      padding: 2px 6px;
-      border-radius: 6px;
+    @media (max-width: 768px) {
+      body {
+        padding: 16px;
+      }
+
+      .video-frame {
+        height: 260px;
+      }
+
+      .track {
+        padding: 10px;
+      }
+
+      .cover-thumb {
+        width: 50px;
+        height: 50px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Watch Videos</h1>
+    <h1>Video Contests</h1>
 
-    <video id="videoPlayer" controls>
-      <source id="videoSource" src="videos/video1.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+    <iframe
+      id="videoPlayer"
+      class="video-frame"
+      src=""
+      title="Video Contests player"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
 
-    <div class="now-playing" id="nowPlaying">Now Playing: Video 1</div>
+    <div class="now-playing" id="nowPlaying">Now Playing:</div>
 
-    <div class="playlist">
-      <div class="track" onclick="playVideo('videos/video1.mp4', 'Video 1')">Video 1</div>
-      <div class="track" onclick="playVideo('videos/video2.mp4', 'Video 2')">Video 2</div>
-      <div class="track" onclick="playVideo('videos/video3.mp4', 'Video 3')">Video 3</div>
-    </div>
-
-    <div class="note">
-      Replace the files in the <code>videos</code> folder with your own MP4 files,
-      then update the filenames and titles in <code>index.html</code>.
-    </div>
+    <div class="playlist" id="playlist"></div>
   </div>
 
-  <script>
-    function playVideo(file, title) {
-      const player = document.getElementById('videoPlayer');
-      const source = document.getElementById('videoSource');
-      const nowPlaying = document.getElementById('nowPlaying');
-
-      source.src = file;
-      player.load();
-      player.play();
-      nowPlaying.textContent = 'Now Playing: ' + title;
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
